@@ -1,0 +1,75 @@
+SQL Introduction and Asking the Right Questions
+*A quick review of SQL
+ - A database is a structured collection of data organized in tables with rows (records) and columns (fields) to help manage and retrieve information.
+ - SQL (Structured Query Language) is the main language used to communicate with relational databases, allowing you to manage and query data effectively.
+ - SQL has a long history dating back to the 1970s but remains highly relevant today, widely used in many companies.
+ - Modern data challenges include big data, which involves analyzing massive datasets using technologies like Hadoop and NoSQL.
+*What is a relational database
+ - A relational database organizes data into tables representing unique entities (like customers, orders, products) and shows how these entities relate to each other.
+ - Relationships between entities can be one-to-one, one-to-many, or many-to-many, with many-to-many often requiring an intermediary entity to clarify connections.
+ - Each table has a primary key that uniquely identifies records, and foreign keys link tables together, maintaining referential integrity to ensure data accuracy.
+ - Entity-relationship diagrams (ERDs) visually map out entities and their relationships, serving as a useful guide to understanding and managing database structure.
+*Common SQL structures
+ - Asking precise and detailed questions about your data is crucial to getting the right results from your SQL queries.
+ - SQL queries are built using clauses like SELECT (to specify fields), FROM (to specify tables), and JOIN (to combine tables based on related keys).
+ - Different types of joins (inner, left, right, full outer) help you retrieve data based on how tables relate, with inner join being a common starting point.
+ - Additional clauses such as WHERE, ORDER BY, GROUP BY, HAVING, and LIMIT allow you to filter, sort, group, and limit your query results for more targeted insights.
+
+Using Data Types
+*Using data types and identifying the wrong data type
+ - Data types in SQL define what kind of values a column can hold, ensuring data is stored and processed correctly (e.g., INT for integers, VARCHAR for text, DATE for date, TIME for time).
+ - Constraints like NULL/NOT NULL, UNIQUE, PRIMARY KEY, and FOREIGN KEY help maintain data quality and consistency across tables.
+ - Using the correct data type is crucial when applying functions like SUM; for example, summing numeric fields works, but summing text fields like emails does not produce meaningful results.
+ - Consistency in data types across related tables (e.g., customer IDs) is important to avoid errors when joining tables.
+*Finding missinbg values
+ - NULL values represent missing or empty data in a database column, which is different from zero or blank spaces.
+ - The WHERE clause in SQL helps filter data, and you can use conditions like IS NULL or IS NOT NULL to find missing or present values.
+ - The LIKE keyword with wildcards (e.g., '% %') helps identify values containing spaces, which might look empty but are not NULL.
+ - Checking for missing or inaccurate data is crucial for maintaining data quality, especially before migration or analysis.
+*Finding possible inaccurate data values
+ - SQL operators—comparison (e.g., =, >, <>, <=), logical (e.g., AND, OR), and arithmetic (e.g., +, -, *, /, %)—are essential tools to identify and analyze possible bad or anomalous data.
+ - It's important to verify data accuracy by checking for discrepancies, such as mismatched totals or missing calculations like taxes or discounts.
+ - Good data documentation, including clear definitions and valid value lists, is crucial for identifying bad data and maintaining the integrity of your applications.
+ - The GROUP BY clause groups rows with the same values, allowing you to summarize data using aggregate functions like COUNT, SUM, AVG, MIN, and MAX.
+*Finding duplicate rows
+ - The COUNT function is useful for identifying duplicate records by counting occurrences of values.
+ - The HAVING clause filters results based on aggregate function outcomes (e.g., filtering groups where COUNT is greater than one), and it must be used together with GROUP BY.
+ - WHERE filters non-aggregated data, while HAVING filters aggregated data.
+
+Working with Dates
+*Working with dates
+ - SQL date data types like DATE, DATETIME, TIMESTAMP, and YEAR each store date and time information with different levels of precision; for example, DATE stores only the date (YYYY-MM-DD), while TIMESTAMP includes both date and time.
+ - You can extract parts of a date (year, month, day) into separate columns using SQL functions, which helps in detailed analysis and reporting.
+ - Using aliases in your queries makes the output more readable and understandable for your audience.
+ - Functions like NOW() retrieve the current date and time from the system, useful for inserting timestamps or tracking data changes.
+*Filtering data by dates
+ - Use SQL comparison and logical operators (like =, AND) with date functions to filter data for specific time periods, such as orders from a particular month and year.
+ - The BETWEEN keyword is useful for selecting records within a date range, making it easier to query data over a continuous period.
+ - The ORDER BY clause sorts query results by date in ascending (ASC) or descending (DESC) order to organize your output effectively.
+ - Functions like NOW() allow you to compare dates against the current date, enabling dynamic filtering such as finding records older than a certain number of years.
+
+Easy SQL Function
+*Common SQL string functions
+ - SQL string functions like CONCAT, UPPER, LOWER, TRIM, REPLACE, and SUBSTRING help you manipulate and standardize text data in your queries without altering the original data.
+ - CONCAT joins strings together (e.g., combining first and last names), while UPPER and LOWER standardize text case for consistency.
+ - TRIM removes unwanted spaces or characters from text, which is useful for cleaning user input or inconsistent data.
+ - REPLACE lets you substitute specific parts of a string with new text, helping correct or update data values efficiently.
+*Common SQL aggregate functions
+ - Aggregate functions like COUNT, AVG, MIN, MAX, and SUM help you summarize and analyze data effectively, such as counting customers or calculating average order amounts.
+ - Using DISTINCT with COUNT lets you find unique values, like the number of customers who actually made purchases.
+ - GROUP BY allows you to aggregate data by categories (e.g., by state) to get insights like total sales or average order values.
+ - Creating views lets you save complex queries for reuse, which can be integrated into applications or reports.
+*Introduction to data manipulation
+ - SQL data manipulation language (DML) includes INSERT to add new records, UPDATE to modify existing records, and DELETE to remove records from tables.
+ - Always use a WHERE clause with UPDATE and DELETE to target specific rows; omitting it can affect all rows, which is usually undesirable.
+ - Transactions group multiple data changes into a single unit of work, allowing you to COMMIT changes if all succeed or ROLLBACK if errors occur, ensuring database integrity.
+
+Presention Your SQL Results in Data Visualization
+*Getting started with data visualization
+ - Combining SQL queries with Python in Jupyter Notebook allows you to create interactive dashboards that visualize data effectively.
+ - Using Plotly, an open-source graphing library, you can build web-based dashboards to display insights like salesperson performance.
+ - Integrating data visualization into applications helps turn raw data into meaningful stories that support better business decisions.
+*Creating data visualization
+ - Combining SQL queries with Python in Jupyter Notebook enables you to create interactive, web-based dashboards that visualize data effectively.
+ - Plotly, an open-source graphing library, is used to build dashboards that can display insights such as sales performance and allow user interaction through filters.
+ - These dashboards can be embedded into web pages and shared with teams, helping turn raw data into meaningful stories that support better business decisions.
