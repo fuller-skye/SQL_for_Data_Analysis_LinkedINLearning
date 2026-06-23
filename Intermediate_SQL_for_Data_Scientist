@@ -1,0 +1,84 @@
+Foundations of SQL for Data Science
+*Overview of data science operations
+ - Linking data from different data stores
+ - Fitering and reformatting data for different uses
+ - Aggregating data to provide big-picture smmaries
+ - Answering specific questions about business operations
+ - Data sources; Databases:Relational and NoSQL, Applicatiopn: Apps, Iot Devices, Web logs, Manual:Managed Data
+ - Extract, Transform, Load
+*Data manipulation commands
+ - Two types of data rules, manipulation and definition
+ - INSERT INTO ( VALUES ), UPDATE ( SET WHERE ), DELETE ( WHERE )
+*Data Defionition commands
+ - CREATE TABLE ( table name, list of columns, data type(specific length), PRIMARY KEY(column name), ) 
+ - CREATE INDEX ( name of index, ON, USING(row) )
+ - CREATE VIEW ( view name,  AS, SELECT, FROM, LEFT JOIN, ON ) 
+ - CREATE SCHEMA ( name of schema ) 
+*SQL standards
+ - Change over time and vary across databases, or from project to project
+ - ANSI Standard SQL, ( JSON )
+
+Data Munging with SQL
+*Reformatting character data
+ - SQL provides functions to manipulate text data, such as converting text to uppercase, capitalizing the first letter, and trimming unwanted spaces from the beginning or end of strings.
+ - You can combine multiple functions by nesting them to perform complex text transformations.
+ - Concatenation of strings in SQL uses the double pipe operator (||), and when concatenating, null values result in a null output, which is important to handle in queries.
+*Extracting strings from character data
+ - SQL's substring function allows you to extract specific parts of text by specifying the starting position and length, with flexible syntax options.
+ - Pattern matching with the LIKE operator and wildcards (e.g., "%assistant%") helps find text within strings, but using wildcards at the start can prevent index use and slow down queries on large tables.
+ - You can create Boolean columns based on pattern matches to flag or categorize data, which is useful for building clearer datasets aligned with business terminology.
+*Filtering with regular expresions
+ - When pattern matching in SQL gets complex, using the similar to operator with regular expression syntax is more powerful and concise than multiple like clauses.
+ - The similar to operator allows combining multiple patterns in one expression using lists and the pipe (|) symbol to represent OR conditions.
+ - Careful attention is needed with spaces and special characters in patterns, as they affect matching results.
+ - You can use wildcards like % for any sequence of characters and _ for a single character to build flexible search patterns.
+*Reformating numeric data
+ - SQL provides several functions to reformat numeric data: round (to round numbers to a specified decimal place), trunc (to truncate numbers by dropping decimal digits without rounding), and ceiling (to round numbers up to the next whole number).
+ - You can control the level of decimal precision by specifying how many digits to round or truncate to, which helps tailor numeric results to business needs.
+ - Understanding when to use rounding versus truncation is important, as truncation simply cuts off decimals while rounding adjusts the number based on decimal value.
+*Fuzzy string matching
+ - The fuzzystrmatch extension in PostgreSQL provides functions to compare text strings with tolerance for minor differences, useful for handling typos or variations.
+ - The Soundex function converts strings into phonetic codes, allowing comparison of words that sound similar even if spelled differently.
+ - The difference function measures how similar two Soundex codes are, with a scale from 0 (no similarity) to 4 (exact match), helping set tolerance levels.
+ - The levenshtein function calculates the number of single-character edits needed to change one string into another, offering a precise way to measure text similarity.
+
+Filtering and Aggregation
+*Using the HAVING clause to find subgroups
+ - Use GROUP BY to aggregate data by categories, like counting employees per department.
+ - ORDER BY lets you sort results by any column, including aggregates, in ascending or descending order.
+ - WHERE filters rows before aggregation, so it can't use aggregate functions.
+ - HAVING filters groups after aggregation, allowing conditions on aggregate results like counts.
+*Subqueries for column values
+ - SQL allows you to use subqueries within SELECT statements to modularize and simplify complex business logic.
+ - You can reference the same table multiple times in a query by using different aliases to distinguish between the outer query and subquery.
+ - Correlating subqueries with the outer query (e.g., matching department IDs) lets you calculate context-specific aggregates like the average salary within each department.
+ - Using functions like ROUND helps format numeric results for clearer presentation.
+*Subqueries in FROM clauses
+ - SQL allows you to use subqueries within the FROM clause to modularize and simplify complex queries by creating intermediate result sets.
+ - Subqueries can help isolate complex business logic, making queries more readable and easier to manage.
+ - The example showed calculating the average salary of employees earning over $100,000 using a subquery, which is logically equivalent to using a WHERE clause but can be clearer for complex scenarios.
+*Subqueries in WHERE clauses
+ - Subqueries in the WHERE clause allow you to filter data based on dynamic conditions, like finding employees with the maximum salary.
+ - You can reference the same table multiple times in a query by using aliases to distinguish between the outer query and the subquery.
+ - WHERE clauses require Boolean conditions, so the subquery must return a value that can be compared to create a true/false condition.
+*Using ROLLUP to create subtotals
+ - The ROLLUP operator in SQL extends the GROUP BY clause to create hierarchical subtotals, letting you see aggregated data at multiple levels (e.g., by region, then country, then total).
+ - It helps generate useful summary reports that include both detailed and rolled-up counts or sums in one query.
+ - Because ROLLUP adds extra rows for subtotals, it behaves differently from standard relational operations, so it's best used at the end of your query process, not inside subqueries.
+*Using CUBE to total across dimensions
+ - The ROLLUP operator in SQL extends the GROUP BY clause to create hierarchical subtotals, letting you see aggregated data at multiple levels (e.g., by region, then country, then total).
+ - It helps generate useful summary reports that include both detailed and rolled-up counts or sums in one query.
+ - Because ROLLUP adds extra rows for subtotals, it behaves differently from standard relational operations, so it's best used at the end of your query process, not inside subqueries.
+*Using Top-N queries to find top results
+ - To find the top N results (like top 10 employees by salary), you can use ORDER BY with DESC to sort the data and then LIMIT or FETCH FIRST to restrict the number of rows returned.
+ - LIMIT is widely supported but not part of the SQL standard; FETCH FIRST is the standard SQL alternative.
+ - Be aware that using LIMIT or FETCH FIRST may cause the database to process the entire dataset before trimming results, which can impact performance on large tables.
+
+Window Function and Ordered Data
+
+Common Table Insurace
+
+Types of Joins
+
+Working with JSON
+
